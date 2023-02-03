@@ -11,7 +11,7 @@ admin
 ww: woutweghorst123
 
 
-Database structure:
+## Database structure:
 ###### Keepers later toevoegen (beginnen met spelers)
 
 - GeneralPlayerInfo (stats + misc)
@@ -21,4 +21,11 @@ Database structure:
 - Defense
 - Possession
 - PlayingTime
-- 
+
+## Flow and use case
+Scouts can use this to find the perfect player for the need of the club/team
+- User logs in and redirects to critereaselection page
+- User selects criterea for player
+  - e.g. Left back, younger than 25, attacking (lots of crosses), not aggresive (least yellow/red cards)
+- Model finds player
+- Show stats/visualization of the player, compared to other players who fit the criterea
