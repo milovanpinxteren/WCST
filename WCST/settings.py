@@ -26,6 +26,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+LOGIN_URL = '/admin/login'
+LOGIN_REDIRECT_URL = '/'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,7 +57,7 @@ ROOT_URLCONF = 'WCST.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'WCST', 'templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -66,6 +70,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'WCST.wsgi.application'
 
