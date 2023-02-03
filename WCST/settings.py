@@ -28,7 +28,7 @@ ALLOWED_HOSTS = []
 
 
 LOGIN_URL = '/admin/login'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login_redirect'
 
 # Application definition
 
