@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'scoutingtool/stylesheet.css' %}"/>
+    <title>WCST</title>
 </head>
 <body>
-<h1>User input voor speler criterium</h1>
+<div class="centered-form-container">
+    <div id="criterea-selctor-form-div">
+        <h1>Fill in your preferences for your player here</h1>
+        <form method="post" action="/submit-criterea">
+            {% csrf_token %}
+            {{ criterea_selection_form }}<br><br>
+            <button type="submit">Submit Player Criterea</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

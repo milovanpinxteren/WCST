@@ -7,10 +7,11 @@ from scoutingtool.models import GeneralPlayerInfo, PlayerPositions, Shooting
 class PlayerPositionsAdmin(admin.ModelAdmin):
     list_display = ['position', 'abbreviation']
 
+
 @admin.register(GeneralPlayerInfo)
 class GeneralPlayerInfoAdmin(admin.ModelAdmin):
     list_display = ['player_name']
 
 @admin.register(Shooting)
 class ShootingAdmin(admin.ModelAdmin):
-    list_display = ['player', 'goals']
+    list_display = ['player', 'goals_per_90_mins', 'shots_shots_per_90_mins']
