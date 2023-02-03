@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from scoutingtool.models import PlayerData
+
+
+@admin.register(PlayerData)
+class PlayerDataAdmin(admin.ModelAdmin):
+    list_display = ['player_name']
+
