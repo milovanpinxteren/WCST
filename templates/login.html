@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>login</h1>
-<form class="form" role="form" method="POST">
+<form class="form" role="form" method="POST" action="scoutingtool">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Login</button>
