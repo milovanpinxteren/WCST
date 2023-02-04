@@ -36,19 +36,28 @@ Scouts can use this to find the perfect player for the need of the club/team
 - Give importance weight to attributes (high - low 5 point scale)
   - General
     - Position 
-    - Age (range)
-    - minutes played per game (average)
+    - Min age
+    - Max age
+    - Optional: minutes per game
   - Shooting
     - Goals per 90 min
     - Shots per 90 mins
-    - Shots on target per 90 mins
     - Shots on target percentage
     - Goals per shot
     - Free-kick taker
     - Penalty taker
-    - Optional: Expected goals
+    - Optional: Expected goals per match (kan dit?)
   - Passing
-    - 
+    - passes per 90 min
+    - passes completed percentage
+    - passes short percentage
+    - passes medium percentage
+    - passes long percentage
+    - assists per 90 mins
+    - assisted shots per 90 mins
+    - passes into penalty area per 90 mins
+    - crosses into penalty area per 90 mins
+    - progressive passes per 90 mins
   - Chance/Goal creation
   - Defense
   - Possesion

@@ -8,12 +8,38 @@
 
 #criterea-selctor-form-div {
     display: inline-block;
-    /*margin: auto;*/
-    /*width: 50%;*/
     width: 100%;
     height: 100%;
     border: 3px solid green;
     padding: 10px;
     text-align: center;
     background-color: grey;
+}
+
+
+.collapsible {
+
+}
+
+.active, .collapsible:hover {
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
 }

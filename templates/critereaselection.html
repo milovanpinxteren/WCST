@@ -11,12 +11,79 @@
 <div class="centered-form-container">
     <div id="criterea-selctor-form-div">
         <h1>Fill in your preferences for your player here</h1>
+        <h2> (press on selection to show content)</h2>
         <form method="post" action="/submit-criterea">
             {% csrf_token %}
-            {{ criterea_selection_form }}<br><br>
+            <div>
+                <hr>
+                <a class="collapsible"><h3>General Info</h3></a>
+                <div class="content">
+                    <p>
+                        Player Position: {{ criterea_selection_form.player_position }}
+                    </p>
+                    <p>
+                        Mimimum
+                        age: {{ criterea_selection_form.player_age_min }} {{ criterea_selection_form.player_age_min_importance }}
+                        <br><br>
+                        Maximum
+                        age: {{ criterea_selection_form.player_age_max }} {{ criterea_selection_form.player_age_max_importance }}
+                    </p>
+                </div>
+                <hr>
+                <a class="collapsible"><h3>Goals and Shooting</h3></a>
+                <div class="content">
+                    <p>
+                        Amount of
+                        goals: {{ criterea_selection_form.goals }} {{ criterea_selection_form.goals_importance }}
+                    </p>
+                    <p>
+                        Amount of
+                        shots: {{ criterea_selection_form.shots }} {{ criterea_selection_form.shots_importance }}
+                    </p>
+                    <p>
+                        Shots on
+                        target: {{ criterea_selection_form.shots_on_target }} {{ criterea_selection_form.shots_on_target_importance }}
+                    </p>
+                    <p>
+                        Goals per
+                        shot: {{ criterea_selection_form.goals_per_shot }} {{ criterea_selection_form.goals_per_shot_importance }}
+                    </p>
+                    <p>
+                        Is a penalty
+                        killer: {{ criterea_selection_form.penalty_killer }} {{ criterea_selection_form.penalty_killer_importance }}
+                    </p>
+                </div>
+                <hr>
+                <a class="collapsible"><h3>Passing</h3></a>
+                <div class="content">
+                    <p>
+{#                        Amount of#}
+{#                        goals: {{ criterea_selection_form.goals }} {{ criterea_selection_form.goals_importance }}#}
+                    </p>
+                </div>
+            </div>
+            <br><br><br>
+            <hr>
             <button type="submit">Submit Player Criterea</button>
         </form>
     </div>
 </div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+</script>
 </body>
 </html>

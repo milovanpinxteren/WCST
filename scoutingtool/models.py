@@ -23,4 +23,7 @@ class GeneralPlayerInfo(models.Model):
 class Shooting(models.Model):
     player = models.ForeignKey(GeneralPlayerInfo, on_delete=models.CASCADE, default='', blank=True)
     goals_per_90_mins = models.FloatField(null=True, blank=True)
-    shots_shots_per_90_mins = models.FloatField(null=True, blank=True)
+    shots_per_90_mins = models.FloatField(null=True, blank=True)
+    shots_on_target_per_90_mins = models.FloatField(null=True, blank=True)
+    goals_per_shot_per_90_mins = models.FloatField(null=True, blank=True)
+    penalty_success_rate = models.FloatField(null=True, blank=True) #only if more than >3 penalties taken

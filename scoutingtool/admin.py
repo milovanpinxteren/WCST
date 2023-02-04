@@ -14,4 +14,4 @@ class GeneralPlayerInfoAdmin(admin.ModelAdmin):
 
 @admin.register(Shooting)
 class ShootingAdmin(admin.ModelAdmin):
-    list_display = ['player', 'goals_per_90_mins', 'shots_shots_per_90_mins']
+    list_display = ['player', 'goals_per_90_mins', 'shots_per_90_mins']
