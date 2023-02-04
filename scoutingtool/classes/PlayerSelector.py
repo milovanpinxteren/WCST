@@ -1,3 +1,4 @@
+from scoutingtool.classes.FilterPlayers import FilterPlayers
 from scoutingtool.models import GeneralPlayerInfo
 
 
@@ -6,7 +7,6 @@ class PlayerSelector():
         self.handle_form(criterea_selection_form)
         self.query_players()
         self.get_player_data()
-
 
     def handle_form(self, criterea_selection_form):
         self.criterea_list = []
@@ -25,11 +25,9 @@ class PlayerSelector():
 
 
     def query_players(self):
-        queryset = GeneralPlayerInfo.objects.all()
-        # queryset = queryset.filter(player_age__lte=self.player_age_max)
+        filterplayers = FilterPlayers()
+        self.queryset = filterplayers.filter_players(self.criterea_list)
 
-
-        self.queryset = queryset
 
     def get_player_data(self):
         playersdata = []

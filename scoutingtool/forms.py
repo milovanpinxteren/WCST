@@ -6,7 +6,7 @@ from scoutingtool.models import PlayerPositions
 
 class CritereaSelectorForm(forms.Form):
     #################################################General Info#####################################################
-    player_position = forms.ModelChoiceField(queryset=PlayerPositions.objects.all(), empty_label="Select Position")
+    player_position = forms.ModelChoiceField(queryset=PlayerPositions.objects.all().order_by('id'), empty_label="Select Position")
     player_age_min = forms.IntegerField(required=False)
     player_age_min_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     player_age_max = forms.IntegerField(required=False)
