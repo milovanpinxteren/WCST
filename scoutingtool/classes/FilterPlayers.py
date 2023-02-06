@@ -1,12 +1,16 @@
 from scoutingtool.classes.filterclasses.ShootingFilter import ShootingFilter
-from scoutingtool.models import GeneralPlayerInfo
+from scoutingtool.models import GeneralPlayerInfo, Shooting
 
 
 class FilterPlayers():
+    def __init__(self):
+        self.shooting_fields = []
+        for shooting_field in Shooting._meta.get_fields():
+            self.shooting_fields.append(shooting_field.attname)
+        self.shootingfilter = ShootingFilter()
+        #TODO same for passing etc
+
     def filter_players(self, criterea_list):
-        shooting_fields = ['goals_per_90_mins', 'shots', 'shots_on_target', 'goals_per_shot', 'penalty_killer']
-        shootingfilter = ShootingFilter()
-        # same for passing etc
         queryset = GeneralPlayerInfo.objects.all()
         filtered_id_list = GeneralPlayerInfo.objects.all().values_list('id', flat=True)
         for criterium in criterea_list:
@@ -19,13 +23,9 @@ class FilterPlayers():
                 queryset = queryset.filter(player_age__gte=criterium['value'])
             elif criterium['field'] == 'player_age_max':
                 queryset = queryset.filter(player_age__lte=criterium['value'])
-            #get list of ids based on players who perform better than average
-            elif criterium['field'] in shooting_fields:
-                filtered_id_list = shootingfilter.filter_players(criterium)
+            elif criterium['field'] in self.shooting_fields:
+                filtered_id_list = self.shootingfilter.filter_players(criterium)
+            #TODO: do this for passing, possession etc
 
-            if len(queryset.filter(id__in=filtered_id_list)) > 5: #To ensure that the there are at least 5 players left
-                queryset = queryset.filter(id__in=filtered_id_list)
-            elif len(queryset.filter(id__in=filtered_id_list)) <= 5:
-                return queryset
-        # TODO sort on most important criterea and select top 5
+            queryset = queryset.filter(id__in=filtered_id_list)
         return queryset

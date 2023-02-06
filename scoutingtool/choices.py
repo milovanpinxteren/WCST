@@ -1,3 +1,4 @@
+
 IMPORTANCE_CHOICES = (
     (1, ("Very low importance")),
     (2, ("Low importance")),
@@ -5,7 +6,7 @@ IMPORTANCE_CHOICES = (
     (4, ("High importance")),
     (5, ("Very high importance")),
 )
-
+#Every choicefield except IMPORTANCE_CHOICES is on a 0-3 scale
 GOALS_CHOICES = (
     (0, ("No preference")),
     (1, ("Low amount of goals")),
@@ -36,5 +37,7 @@ GOALS_PER_SHOT_CHOICES = (
 
 PENALTY_KILLER_CHOICES = (
     (0, ("No preference")),
-    (1, ("Scores most of his penalties")),
+    (1, ("Misses most of his penalties")),
+    (2, ("Scores most of his penalties")),
+    (3, ("Scores (almost) all of his penalties"))
 )

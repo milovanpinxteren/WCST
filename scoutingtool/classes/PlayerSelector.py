@@ -1,4 +1,5 @@
 from scoutingtool.classes.FilterPlayers import FilterPlayers
+from scoutingtool.classes.PlayerSorter import PlayerSorter
 from scoutingtool.models import GeneralPlayerInfo
 
 
@@ -6,6 +7,7 @@ class PlayerSelector():
     def __init__(self, criterea_selection_form):
         self.handle_form(criterea_selection_form)
         self.query_players()
+        self.sort_players()
         self.get_player_data()
 
     def handle_form(self, criterea_selection_form):
@@ -15,7 +17,7 @@ class PlayerSelector():
                 value = criterea_selection_form[field].value()
                 try:
                     importance = int(criterea_selection_form[field + '_importance'].value())
-                except KeyError: #for position and age, no importance passed by user, high importance by default
+                except KeyError: #for position and age, no importance passed by user, highest importance by default
                     importance = 6
                 criterium_dict = {'field': field, 'value': value, 'importance': importance}
                 self.criterea_list.append(criterium_dict)
@@ -27,8 +29,11 @@ class PlayerSelector():
     def query_players(self):
         filterplayers = FilterPlayers()
         self.queryset = filterplayers.filter_players(self.criterea_list)
-        print(self.queryset)
 
+
+    def sort_players(self):
+        print('sort players')
+        PlayerSorter().sort_players()
 
 
     def get_player_data(self):
