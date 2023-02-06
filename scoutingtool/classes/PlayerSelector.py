@@ -15,8 +15,8 @@ class PlayerSelector():
                 value = criterea_selection_form[field].value()
                 try:
                     importance = int(criterea_selection_form[field + '_importance'].value())
-                except KeyError: #for position, no importance passed by user, high importance by default
-                    importance = 5
+                except KeyError: #for position and age, no importance passed by user, high importance by default
+                    importance = 6
                 criterium_dict = {'field': field, 'value': value, 'importance': importance}
                 self.criterea_list.append(criterium_dict)
         def sortingFunction(e):
@@ -27,6 +27,8 @@ class PlayerSelector():
     def query_players(self):
         filterplayers = FilterPlayers()
         self.queryset = filterplayers.filter_players(self.criterea_list)
+        print(self.queryset)
+
 
 
     def get_player_data(self):
