@@ -5,6 +5,9 @@
     <title>Results</title>
 </head>
 <body>
-{{ playerdata }}
+{% for player in playerdata %}
+    <a target="_blank" href="https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query={{ player.0 }}"> {{ player }}</a>
+{#{{ player }}#}
+{% endfor %}
 </body>
 </html>
