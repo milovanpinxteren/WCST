@@ -32,13 +32,13 @@ class PlayerSelector():
 
 
     def sort_players(self):
-        print('sort players')
-        PlayerSorter().sort_players()
+        playersorter = PlayerSorter(self.queryset, self.criterea_list)
+        self.sorted_queryset = playersorter.sort_queryset()
 
 
     def get_player_data(self):
         playersdata = []
-        for player in self.queryset:
+        for player in self.sorted_queryset:
             playerdata = []
             playerdata.append(player.player_name)
             playerdata.append(player.player_age)

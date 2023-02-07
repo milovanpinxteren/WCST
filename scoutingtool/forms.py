@@ -13,13 +13,13 @@ class CritereaSelectorForm(forms.Form):
     # player_age_max_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     #################################################Goals and Shooting#####################################################
     goals_per_90_mins = forms.ChoiceField(required=False, choices=GOALS_CHOICES)
-    goals_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
+    goals_per_90_mins_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     shots_per_90_mins = forms.ChoiceField(required=False, choices=SHOTS_CHOICES)
-    shots_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
+    shots_per_90_mins_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     shots_on_target_per_90_mins = forms.ChoiceField(required=False, choices=SHOTS_ON_TARGET_CHOICES)
-    shots_on_target_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
+    shots_on_target_per_90_mins_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     goals_per_shot = forms.ChoiceField(required=False, choices=GOALS_PER_SHOT_CHOICES)
     goals_per_shot_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     penalty_success_rate = forms.ChoiceField(required=False, choices=PENALTY_KILLER_CHOICES)
-    penalty_killer_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
+    penalty_success_rate_importance = forms.ChoiceField(required=False, choices=IMPORTANCE_CHOICES)
     #################################################Passing#####################################################

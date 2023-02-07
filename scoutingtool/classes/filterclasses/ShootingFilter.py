@@ -11,11 +11,10 @@ class ShootingFilter():
         if criterium['value'] == '1': #low amount
             filter_dict = {criterium['field'] + '__lte': avg}
             filtered_id_list = Shooting.objects.filter(**filter_dict).values_list('player_id', flat=True)
-        elif criterium['value'] == '2': #medium amount
+        elif criterium['value'] == '2': #medium amount (Gets the 25 players closest to the average amount (arbitrary chosen number))
             filter_dict = {criterium['field'] + '__lt': avg}
             ordering = '-' + criterium['field']
             filtered_id_list = Shooting.objects.filter(**filter_dict).order_by(ordering).values_list('player_id', flat=True)[:25]
-            #Gets the 25 players closest to the average amount (arbitrary chosen number)
         elif criterium['value'] == '3': #high amount
             filter_dict = {criterium['field'] + '__gte': avg}
             filtered_id_list = Shooting.objects.filter(**filter_dict).values_list('player_id', flat=True)
