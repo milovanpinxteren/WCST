@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from scoutingtool.classes.PlayerSelector import PlayerSelector
+from scoutingtool.classes.VisualizationMaker import VisualizationMaker
 from scoutingtool.forms import CritereaSelectorForm
 
 
@@ -16,8 +17,10 @@ def submit_criterea(request): #when user submits the form
         criterea_selection_form = CritereaSelectorForm(request.POST)
         if criterea_selection_form.is_valid():
             playerselector = PlayerSelector(criterea_selection_form)
-            playerdata = playerselector.get_player_data()
-            context = {'playerdata': playerdata}
+            selected_players, criterea_list = playerselector.sort_players()
+            visualizationmaker = VisualizationMaker()
+            visualizations = visualizationmaker.make_visualizations(selected_players, criterea_list)
+            context = {'playerdata': visualizations}
 
 
     return render(request, 'resultspage.html', context)

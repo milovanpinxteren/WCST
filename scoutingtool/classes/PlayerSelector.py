@@ -1,5 +1,6 @@
 from scoutingtool.classes.FilterPlayers import FilterPlayers
 from scoutingtool.classes.PlayerSorter import PlayerSorter
+from scoutingtool.classes.VisualizationMaker import VisualizationMaker
 from scoutingtool.models import GeneralPlayerInfo
 
 
@@ -8,7 +9,6 @@ class PlayerSelector():
         self.handle_form(criterea_selection_form)
         self.query_players()
         self.sort_players()
-        self.get_player_data()
 
     def handle_form(self, criterea_selection_form): #change input to sorted list of dicts with critirea and weights
         self.criterea_list = []
@@ -34,13 +34,6 @@ class PlayerSelector():
     def sort_players(self): #sorts the players based on importance passed by user, and selects top five
         playersorter = PlayerSorter(self.queryset, self.criterea_list)
         self.sorted_queryset = playersorter.sort_queryset()[:5]
+        return self.sorted_queryset, self.criterea_list
 
 
-    def pass_player_data(self): #passes the relevant players to visualization part
-        playersdata = []
-        for player in self.sorted_queryset:
-            playerdata = []
-            playerdata.append(player.player_name)
-            playerdata.append(player.player_age)
-            playersdata.append(playerdata)
-        return playersdata
