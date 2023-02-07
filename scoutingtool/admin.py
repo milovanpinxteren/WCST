@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from scoutingtool.models import GeneralPlayerInfo, PlayerPositions, Shooting
+from scoutingtool.models import GeneralPlayerInfo, PlayerPositions, Shooting, Passing, Defense, Possession, \
+    DuelsandOffside
 
 
 @admin.register(PlayerPositions)
@@ -15,3 +16,19 @@ class GeneralPlayerInfoAdmin(admin.ModelAdmin):
 @admin.register(Shooting)
 class ShootingAdmin(admin.ModelAdmin):
     list_display = ['player', 'goals_per_90_mins', 'shots_per_90_mins']
+
+@admin.register(Passing)
+class ShootingAdmin(admin.ModelAdmin):
+    list_display = ['player', 'passes_per_90_mins', 'passes_completed_percentage']
+
+@admin.register(Defense)
+class ShootingAdmin(admin.ModelAdmin):
+    list_display = ['player', 'tackles_per_90_mins', 'tackles_won_per_90_mins']
+
+@admin.register(Possession)
+class ShootingAdmin(admin.ModelAdmin):
+    list_display = ['player', 'touches_per_90_mins', 'dribbles_per_90_mins']
+
+@admin.register(DuelsandOffside)
+class ShootingAdmin(admin.ModelAdmin):
+    list_display = ['player', 'yellow_cards_per_90_mins', 'fouls_per_90_mins']

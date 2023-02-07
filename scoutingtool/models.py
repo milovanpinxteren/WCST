@@ -27,3 +27,44 @@ class Shooting(models.Model):
     shots_on_target_per_90_mins = models.FloatField(null=True, blank=True)
     goals_per_shot = models.FloatField(null=True, blank=True)
     penalty_success_rate = models.FloatField(null=True, blank=True) #only if more than >3 penalties taken
+
+class Passing(models.Model):
+    player = models.ForeignKey(GeneralPlayerInfo, on_delete=models.CASCADE, default='', blank=True)
+    passes_per_90_mins = models.FloatField(null=True, blank=True)
+    passes_completed_percentage = models.FloatField(null=True, blank=True)
+    passes_short_percentage = models.FloatField(null=True, blank=True)
+    passes_medium_percentage = models.FloatField(null=True, blank=True)
+    passes_long_percentage = models.FloatField(null=True, blank=True)
+    assists_per_90_mins = models.FloatField(null=True, blank=True)
+    assisted_shots_per_90_mins = models.FloatField(null=True, blank=True)
+    crosses_per_90_mins = models.FloatField(null=True, blank=True)
+
+class Defense(models.Model):
+    player = models.ForeignKey(GeneralPlayerInfo, on_delete=models.CASCADE, default='', blank=True)
+    tackles_per_90_mins = models.FloatField(null=True, blank=True)
+    tackles_won_per_90_mins = models.FloatField(null=True, blank=True)
+    blocks_per_90_mins = models.FloatField(null=True, blank=True)
+    interceptions_per_90_mins = models.FloatField(null=True, blank=True)
+    clearences_per_90_mins = models.FloatField(null=True, blank=True)
+    errors_per_90_mins = models.FloatField(null=True, blank=True)
+
+
+class Possession(models.Model):
+    player = models.ForeignKey(GeneralPlayerInfo, on_delete=models.CASCADE, default='', blank=True)
+    shot_creating_actions_per_90_mins = models.FloatField(null=True, blank=True)
+    goal_creating_actions_per_90_mins = models.FloatField(null=True, blank=True)
+    touches_per_90_mins = models.FloatField(null=True, blank=True)
+    dribbles_per_90_mins = models.FloatField(null=True, blank=True)
+    completed_dribbles_percentage = models.FloatField(null=True, blank=True)
+    miscontrols_per_90_mins = models.FloatField(null=True, blank=True)
+    dispossessed_per_90_mins = models.FloatField(null=True, blank=True)
+
+class DuelsandOffside(models.Model):
+    player = models.ForeignKey(GeneralPlayerInfo, on_delete=models.CASCADE, default='', blank=True)
+    yellow_cards_per_90_mins = models.FloatField(null=True, blank=True)
+    red_cards_per_90_mins = models.FloatField(null=True, blank=True)
+    fouls_per_90_mins = models.FloatField(null=True, blank=True)
+    fouled_per_90_mins = models.FloatField(null=True, blank=True)
+    offsides_per_90_mins = models.FloatField(null=True, blank=True)
+    aerials_per_90_mins = models.FloatField(null=True, blank=True)
+    aerials_won_percentage = models.FloatField(null=True, blank=True)

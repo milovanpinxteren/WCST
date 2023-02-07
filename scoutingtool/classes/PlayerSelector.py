@@ -10,7 +10,7 @@ class PlayerSelector():
         self.sort_players()
         self.get_player_data()
 
-    def handle_form(self, criterea_selection_form):
+    def handle_form(self, criterea_selection_form): #change input to sorted list of dicts with critirea and weights
         self.criterea_list = []
         for field in criterea_selection_form.fields:
             if not "_importance" in field:
@@ -26,22 +26,21 @@ class PlayerSelector():
         self.criterea_list.sort(key=sortingFunction, reverse=True)
 
 
-    def query_players(self):
+    def query_players(self): #Filters the players based on the criterea passed by the user
         filterplayers = FilterPlayers()
         self.queryset = filterplayers.filter_players(self.criterea_list)
 
 
-    def sort_players(self):
+    def sort_players(self): #sorts the players based on importance passed by user, and selects top five
         playersorter = PlayerSorter(self.queryset, self.criterea_list)
-        self.sorted_queryset = playersorter.sort_queryset()
+        self.sorted_queryset = playersorter.sort_queryset()[:5]
 
 
-    def get_player_data(self):
+    def pass_player_data(self): #passes the relevant players to visualization part
         playersdata = []
         for player in self.sorted_queryset:
             playerdata = []
             playerdata.append(player.player_name)
             playerdata.append(player.player_age)
             playersdata.append(playerdata)
-
         return playersdata

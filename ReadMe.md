@@ -17,10 +17,9 @@ ww: woutweghorst123
 - GeneralPlayerInfo (stats + misc)
 - Shooting
 - Passing (passing + passing_types)
-- GoalCreatingActions
 - Defense
 - Possession
-- PlayingTime
+- DuelsandOffside
 
 ## Flow and use case
 Scouts can use this to find the perfect player for the need of the club/team
@@ -28,7 +27,7 @@ Scouts can use this to find the perfect player for the need of the club/team
 - User selects criterea for player
   - e.g. Left back, younger than 25, attacking (lots of crosses), not aggresive (least yellow/red cards)
 - Model finds player
-- Show stats/visualization of the player, compared to other players who fit the criterea
+- Show stats/visualization of the player, compared to other players who fit the criterea and average
 
 
 ## User Input Form stucture
@@ -48,17 +47,38 @@ Scouts can use this to find the perfect player for the need of the club/team
     - Penalty taker
     - Optional: Expected goals per match (kan dit?)
   - Passing
-    - passes per 90 min
+    - passes per 90 min (passes and minutes_90s)
     - passes completed percentage
     - passes short percentage
     - passes medium percentage
     - passes long percentage
-    - assists per 90 mins
-    - assisted shots per 90 mins
-    - passes into penalty area per 90 mins
-    - crosses into penalty area per 90 mins
-    - progressive passes per 90 mins
-  - Chance/Goal creation
+    - assists per 90 mins (assists and minutes_90s)
+    - assisted shots per 90 mins (assisted_shots and minutes_90s)
+    - crosses per 90 mins (from misc table)
+    - passes into penalty area per 90 mins (optional)
+    - crosses into penalty area per 90 mins (optional)
+    - progressive passes per 90 mins (optional)
+  - Chance/Goal creation (moved to possession)
   - Defense
-  - Possesion
-  - 
+      - tackles per 90 mins
+      - tackles won per 90 mins
+      - blocks per 90 mins
+      - interceptions per 90 mins
+      - clearences per 90 mins
+      - errors per 90 mins
+  - Possession
+      - Shot creating actions per 90 mins (from gca)
+      - Goal creating actions per 90 mins (from gca)
+      - touches per 90 mins
+      - dribbles per 90 mins
+      - completed dribbles percentage
+      - miscontrols per 90 mins
+      - dispossessed per 90 mins
+  - DuelsandOffside
+      - yellow cards per 90 mins
+      - red cards per 90 mins
+      - fouls per 90 mins
+      - fouled per 90 mins
+      - offsides per 90 mins
+      - aerials per 90 mins
+      - aerials won percentage
