@@ -6,8 +6,61 @@
 </head>
 <body>
 {% for player in playerdata %}
-    <a target="_blank" href="https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query={{ player.0 }}"> {{ player }}</a>
-{#{{ player }}#}
+    <a target="_blank"
+       href="https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query={{ player.0 }}"> {{ player }}</a>
 {% endfor %}
+
+{% include 'interactiveplots.html' %}
+
+
+{#{% load static %}#}
+{#<div style="max-width: 50%;">#}
+{#    <canvas id="myChart"></canvas>#}
+{#</div>#}
+{##}
+{#<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>#}
+{##}
+{##}
+{#<script>#}
+{#    //pinpointing chart (click needs to understand canvas tag#}
+{#    const ctx = document.getElementById('myChart');#}
+{##}
+{#    //render#}
+{#    var TestChart = new Chart(ctx, {#}
+{#        type: 'bar',#}
+{#        data: {#}
+{#            labels: {{ playerdata }},#}
+{#            datasets: [{#}
+{#                label: '# of Votes',#}
+{#                data: [12, 19, 3, 5, 2, 3],#}
+{#                borderWidth: 1#}
+{#            }]#}
+{#        },#}
+{#        options: {#}
+{#            scales: {#}
+{#                y: {#}
+{#                    beginAtZero: true#}
+{#                }#}
+{#            },#}
+{#            events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],#}
+{#            plugins: {#}
+{#                tooltip: {#}
+{#                    // Tooltip will only receive click events#}
+{#                    events: ['click']#}
+{#                }#}
+{#            }#}
+{#        }#}
+{#    });#}
+{#    function clickHandler(click){#}
+{#        const points = TestChart.getElementsAtEventForMode(click, 'nearest', { intersect: true }, true)#}
+{#        if (points.length) {#}
+{#            const firstPoint = points[0];#}
+{#            console.log(TestChart.data.labels[firstPoint.index])#}
+{#            console.log(TestChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index])#}
+{#        }#}
+{#    }#}
+{#    ctx.onclick = clickHandler#}
+{#</script>#}
+
 </body>
 </html>

@@ -20,6 +20,8 @@ def submit_criterea(request): #when user submits the form
             selected_players, criterea_list = playerselector.sort_players()
             visualizationmaker = VisualizationMaker()
             visualizations = visualizationmaker.make_visualizations(selected_players, criterea_list)
+
+
             context = {'playerdata': visualizations}
 
 
