@@ -10,5 +10,5 @@ class InfoGetter():
         player_name = player
         playerinfoscraper = PlayerInfoScraper()
         player_info = playerinfoscraper.scrape_info(player_name)
-        print(player_info)
+        return player_info
 
