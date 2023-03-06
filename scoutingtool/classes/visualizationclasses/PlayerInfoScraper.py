@@ -17,6 +17,7 @@ class PlayerInfoScraper:
         try:
             search_return = urlopen(search_request)
         except UnicodeEncodeError:
+            player_info_dict['Naam'] = player.player_name
             player_info_dict['Geboortedatum'] = "Geen info bekend"
             return player_info_dict
         resultsoup = BeautifulSoup(search_return)
@@ -25,6 +26,7 @@ class PlayerInfoScraper:
         try:
             player_url = "https://www.transfermarkt.nl" + resultset[1].find('a', href=True)['href']
         except IndexError: #no player found on https://www.transfermarkt.nl
+            player_info_dict['Naam'] = player.player_name
             player_info_dict['Geboortedatum'] = "Geen info bekend"
             return player_info_dict
         player_page = Request(player_url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -36,7 +38,9 @@ class PlayerInfoScraper:
         resultset_counter = 0
         playerinfodictmaker = PlayerInfoDictMaker()
         for tag in player_info_resultset: #TODO: string cleaning
+            player_info_dict['Naam'] = player.player_name
             playerinfodictmaker.make_dict(tag, resultset_counter, player_info_resultset, player_info_dict)
+            resultset_counter += 1
         return player_info_dict
 
 

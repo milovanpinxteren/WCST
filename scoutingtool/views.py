@@ -19,10 +19,10 @@ def submit_criterea(request): #when user submits the form
             playerselector = PlayerSelector(criterea_selection_form)
             selected_players, criterea_list = playerselector.sort_players()
             visualizationmaker = VisualizationMaker()
-            visualizations = visualizationmaker.make_visualizations(selected_players, criterea_list)
+            data_for_visualizations = visualizationmaker.make_visualizations(selected_players, criterea_list)
+            jsondata = str(data_for_visualizations).replace("'", '"')
 
-
-            context = {'playerdata': visualizations}
+            context = {'playerdata': data_for_visualizations, 'jsondata': jsondata}
 
 
     return render(request, 'resultspage.html', context)

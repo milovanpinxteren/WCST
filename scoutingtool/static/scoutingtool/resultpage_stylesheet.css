@@ -1,0 +1,15 @@
+
+.player-name {
+    /*margin-right: 15px;*/
+}
+
+.player-name-div {
+    float: left;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.player-info-div {
+    background-color: red;
+    max-width: 30%;
+}

@@ -27,7 +27,8 @@ Scouts can use this to find the perfect player for the need of the club/team
 - User selects criterea for player
   - e.g. Left back, younger than 25, attacking (lots of crosses), not aggresive (least yellow/red cards)
 - Model finds player
-- Show stats/visualization of the player, compared to other players who fit the criterea and average
+- Model finds info on external site and internal database and makes a dict of dicts of dicts with all relevant info
+- Passes to frontend, JS + HTML + ChartJS do visualizations and interactions
 
 
 ## User Input Form stucture
@@ -82,3 +83,15 @@ Scouts can use this to find the perfect player for the need of the club/team
       - offsides per 90 mins
       - aerials per 90 mins
       - aerials won percentage
+
+## Dict format (which is passed to front-end)
+{1: {'id': 1, 'general_player_info': {'Geboortedatum': 'datum', 'Geboorteplaats': 'plaats', etc},
+              'data_for_vis_1': {'skill_1': [data], 'skill_2': [data]},
+              'data_for_vis_2': {'skill_1': [data], 'skill_2': [data]}
+    }
+2: {'id': 2, 'general_player_info': {'Geboortedatum': 'datum', 'Geboorteplaats': 'plaats', etc},
+              'data_for_vis_1': {'skill_1': [data], 'skill_2': [data]},
+              'data_for_vis_2': {'skill_1': [data], 'skill_2': [data]},
+  }
+enzovoort voor 5 spelers
+}
