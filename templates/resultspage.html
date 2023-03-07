@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,9 +26,13 @@
 <div id="player-info-div">
     {% include 'player_info_div.html' %}
 </div>
-<div id="interactive-plots-div">
-    {% include 'interactiveplots.html' %}
+<br><br>
+<div id="transfer-value-chart-div">
+    {% include 'transfervaluechart.html' %}
 </div>
+{#<div id="interactive-plots-div">#}
+{#    {% include 'interactiveplots.html' %}#}
+{#</div>#}
 
 </body>
 </html>

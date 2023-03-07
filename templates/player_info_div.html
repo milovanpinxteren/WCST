@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <h1>Player Info</h1>
 <div class="player-info-key-value-div">
     <span class="player-info-key">Name: </span>
@@ -46,12 +47,12 @@
         document.getElementById("p7").innerHTML = parsed_jsondata[player_id]['general_player_info']['Positie'];
         document.getElementById("p8").innerHTML = parsed_jsondata[player_id]['general_player_info']['Voet'];
         undefinedChanger()
+        transferdataPreparer(player_id)
     }
 </script>
 <script>
     function undefinedChanger() {
         for (let i = 1; i < 9; i++) {
-            console.log(i)
             const pCount = "p" + i + ""
             if (document.getElementById(pCount).innerHTML === "undefined") {
                 document.getElementById(pCount).innerHTML = "Geen informatie bekend"
@@ -60,3 +61,5 @@
     }
 
 </script>
+
+

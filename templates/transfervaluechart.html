@@ -1,0 +1,42 @@
+<div style="max-width: 50%;">
+    <canvas id="transfervaluechart"></canvas>
+</div>
+
+<script>
+    function transferdataPreparer(player_id) {
+        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+        const data_to_parse = doc.documentElement.textContent
+        const parsed_jsondata = JSON.parse(data_to_parse)
+        console.log(Object.keys(parsed_jsondata[player_id]['transfer_value_info']))
+        console.log(Object.values(parsed_jsondata[player_id]['transfer_value_info']))
+        TransfervalueChart.data.labels = Object.values(parsed_jsondata[player_id]['transfer_value_info']);
+        TransfervalueChart.data.datasets[0].data = Object.keys(parsed_jsondata[player_id]['transfer_value_info'])
+        TransfervalueChart.data.datasets.labels = parsed_jsondata[player_id]['general_player_info']['Naam']
+        TransfervalueChart.update()
+    }
+</script>
+<script>
+    const ctx = document.getElementById('transfervaluechart');
+    //render
+    var TransfervalueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+            datasets: [{
+                label: 'Transferwaarde over tijd',
+                data: [19, 19, 3, 5, 2],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+
+        }
+    });
+
+
+</script>
