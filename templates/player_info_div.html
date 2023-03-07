@@ -1,0 +1,62 @@
+<h1>Player Info</h1>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Name: </span>
+    <span class="player-info-value" id="p1"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Date of birth: </span>
+    <span class="player-info-value" id="p2"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Place of birth: </span>
+    <span class="player-info-value" id="p3"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Age: </span>
+    <span class="player-info-value" id="p4"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Length: </span>
+    <span class="player-info-value" id="p5"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Nationality: </span>
+    <span class="player-info-value" id="p6"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Position: </span>
+    <span class="player-info-value" id="p7"> Select Player</span>
+</div>
+<div class="player-info-key-value-div">
+    <span class="player-info-key">Preferred foot: </span>
+    <span class="player-info-value" id="p8"> Select Player</span>
+</div><br>
+
+<script>
+    function playerSelector(player_id) {
+        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+        const data_to_parse = doc.documentElement.textContent
+        const parsed_jsondata = JSON.parse(data_to_parse)
+        document.getElementById("p1").innerHTML = parsed_jsondata[player_id]['general_player_info']['Naam'];
+        document.getElementById("p2").innerHTML = parsed_jsondata[player_id]['general_player_info']['Geboortedatum'];
+        document.getElementById("p3").innerHTML = parsed_jsondata[player_id]['general_player_info']['Geboorteplaats'];
+        document.getElementById("p4").innerHTML = parsed_jsondata[player_id]['general_player_info']['Leeftijd'];
+        document.getElementById("p5").innerHTML = parsed_jsondata[player_id]['general_player_info']['Lengte'];
+        document.getElementById("p6").innerHTML = parsed_jsondata[player_id]['general_player_info']['Nationaliteit'];
+        document.getElementById("p7").innerHTML = parsed_jsondata[player_id]['general_player_info']['Positie'];
+        document.getElementById("p8").innerHTML = parsed_jsondata[player_id]['general_player_info']['Voet'];
+        undefinedChanger()
+    }
+</script>
+<script>
+    function undefinedChanger() {
+        for (let i = 1; i < 9; i++) {
+            console.log(i)
+            const pCount = "p" + i + ""
+            if (document.getElementById(pCount).innerHTML === "undefined") {
+                document.getElementById(pCount).innerHTML = "Geen informatie bekend"
+            }
+        }
+    }
+
+</script>

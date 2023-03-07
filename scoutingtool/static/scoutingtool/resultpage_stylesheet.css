@@ -1,6 +1,5 @@
 
 .player-name {
-    /*margin-right: 15px;*/
 }
 
 .player-name-div {
@@ -9,7 +8,26 @@
     margin-right: 15px;
 }
 
-.player-info-div {
-    background-color: red;
-    max-width: 30%;
+#player-info-div {
+    background-color: lightgray;
+    max-width: 20%;
+}
+
+#interactive-plots-div {
+    /*float: left;*/
+    /*display: inline-block;*/
+}
+
+.player-info-key-value-div {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.player-info-key {
+    float: left;
+    margin-right: 3px;
+}
+
+.player-info-value {
+    display: inline-block;
 }

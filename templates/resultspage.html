@@ -7,17 +7,7 @@
     <title>Results</title>
 </head>
 <body>
-{#<div>#}
-{#    {% for player in playerdata.items %}#}
-{#            <a target="_blank"#}
-{#               href="https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query={{ player }}"> {{ player }}</a>#}
-{#    {% endfor %}#}
-{#</div>#}
 
-{#uncomment this for plots ↓#}
-{#<div>#}
-{#{% include 'interactiveplots.html' %}#}
-{#</div>#}
 
 {% for player in playerdata.items %}
     <script>
@@ -32,16 +22,12 @@
     </script>
 {% endfor %}
 
-<div class="player-info-div">
-    <h1>Player Info</h1>
+<div id="player-info-div">
+    {% include 'player_info_div.html' %}
+</div>
+<div id="interactive-plots-div">
+    {% include 'interactiveplots.html' %}
 </div>
 
-<script>
-    function playerSelector(player_id) {
-        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
-        const parsed_jsondata = JSON.parse(doc.documentElement.textContent)
-        console.log(parsed_jsondata)
-    }
-</script>
 </body>
 </html>
