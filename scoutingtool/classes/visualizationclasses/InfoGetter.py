@@ -19,8 +19,6 @@ class InfoGetter():
         databasequerier = DatabaseQuerier()
         important_criterea = criterea_list[3:8]
         criterea_values_dict = databasequerier.get_values_from_criterea(player, important_criterea)
-
-
-        # return criterea_values_dict
+        return criterea_values_dict
 
 
