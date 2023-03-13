@@ -62,8 +62,8 @@ class PlayerInfoScraper:
         for i in datalist:
             if (transfer_datapoint_counter % 2) == 0: #transfervalue
                 epochtime = int(datalist[transfer_datapoint_counter+1]) / 1000
-                date = datetime.fromtimestamp(epochtime)
-                transfer_values_dict[i] = str(date)
+                date = datetime.fromtimestamp(epochtime).strftime('%Y-%m-%d')
+                transfer_values_dict[str(date)] = i
             transfer_datapoint_counter += 1
         return transfer_values_dict
 

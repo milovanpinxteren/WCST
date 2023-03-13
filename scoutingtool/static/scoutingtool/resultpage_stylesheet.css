@@ -18,6 +18,13 @@
     /*display: inline-block;*/
 }
 
+#transfer-value-chart-div {
+    max-width: 20%;
+}
+#transfervaluechart {
+    height: 280px;
+}
+
 .player-info-key-value-div {
     display: block;
     margin-bottom: 4px;

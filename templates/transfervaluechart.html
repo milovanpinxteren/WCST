@@ -1,4 +1,4 @@
-<div style="max-width: 50%;">
+<div>
     <canvas id="transfervaluechart"></canvas>
 </div>
 
@@ -9,8 +9,8 @@
         const parsed_jsondata = JSON.parse(data_to_parse)
         console.log(Object.keys(parsed_jsondata[player_id]['transfer_value_info']))
         console.log(Object.values(parsed_jsondata[player_id]['transfer_value_info']))
-        TransfervalueChart.data.labels = Object.values(parsed_jsondata[player_id]['transfer_value_info']);
-        TransfervalueChart.data.datasets[0].data = Object.keys(parsed_jsondata[player_id]['transfer_value_info'])
+        TransfervalueChart.data.labels = Object.keys(parsed_jsondata[player_id]['transfer_value_info']);
+        TransfervalueChart.data.datasets[0].data = Object.values(parsed_jsondata[player_id]['transfer_value_info'])
         TransfervalueChart.data.datasets.labels = parsed_jsondata[player_id]['general_player_info']['Naam']
         TransfervalueChart.update()
     }
@@ -21,10 +21,10 @@
     var TransfervalueChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+            labels: ['Selecteer speler', 'Selecteer speler', 'Selecteer speler', 'Selecteer speler', 'Selecteer speler'],
             datasets: [{
-                label: 'Transferwaarde over tijd',
-                data: [19, 19, 3, 5, 2],
+                label: 'Transferwaarde',
+                data: [5, 5, 5, 5, 5],
                 borderWidth: 1
             }]
         },
@@ -34,6 +34,7 @@
                     beginAtZero: true
                 }
             },
+            maintainAspectRatio: false,
 
         }
     });
