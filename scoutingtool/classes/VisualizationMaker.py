@@ -5,6 +5,7 @@ class VisualizationMaker():
     def make_visualizations(self, selected_players, criterea_list):
         print(criterea_list)
         full_players_data_dict = {}
+        avg_data_dict = {}
         infogetter = InfoGetter()
         player_counter = 1
         for player in selected_players:
@@ -29,6 +30,9 @@ class VisualizationMaker():
             player_counter += 1
             print('FULL PLAYER DATA DICT')
             print(full_players_data_dict)
+        criterea_specific_avg_info = infogetter.get_avg_database_data(criterea_list)
+        avg_data_dict['criterea_specific_player_info'] = criterea_specific_avg_info
+        full_players_data_dict[str(6)] = avg_data_dict
         return full_players_data_dict
         # self.prepare_dict(full_players_data_dict)
 

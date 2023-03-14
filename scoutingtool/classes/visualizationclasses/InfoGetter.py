@@ -21,4 +21,10 @@ class InfoGetter():
         criterea_values_dict = databasequerier.get_values_from_criterea(player, important_criterea)
         return criterea_values_dict
 
+    def get_avg_database_data(self, criterea_list):
+        databasequerier = DatabaseQuerier()
+        important_criterea = criterea_list[3:8]
+        criterea_values_dict = databasequerier.get_avg_values_from_criterea(important_criterea)
+        return criterea_values_dict
+
 

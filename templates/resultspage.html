@@ -9,30 +9,37 @@
 </head>
 <body>
 
-
-{% for player in playerdata.items %}
-    <script>
-        console.log("{{ player.1.general_player_info.Naam }}")
-        var inputElement = document.createElement('input');
-        inputElement.type = "button"
-        inputElement.value = "{{ player.1.general_player_info.Naam }}"
-        inputElement.addEventListener('click', function () {
-            playerSelector({{ player.0 }});
-        });
-        document.body.appendChild(inputElement);
-    </script>
-{% endfor %}
-
-<div id="player-info-div">
-    {% include 'player_info_div.html' %}
+<div class="player-buttons-div">
+    {% for player in playerdata.items %}
+{#        <div class="player-button">#}
+            <script>
+                if ("{{ player.0 }}" !== '6') { {#  To display buttons of players, no button for average  #}
+                    var inputElement = document.createElement('input');
+                    inputElement.type = "button"
+                    inputElement.value = "{{ player.1.general_player_info.Naam }}"
+                    inputElement.className = "player-button"
+                    inputElement.addEventListener('click', function () {
+                        playerSelector({{ player.0 }});
+                    });
+                    document.body.appendChild(inputElement);
+                }
+            </script>
+{#        </div>#}
+    {% endfor %}
 </div>
-<br><br>
-<div id="transfer-value-chart-div">
-    {% include 'transfervaluechart.html' %}
+<div class="left-grid">
+    <div id="player-info-div">
+        {% include 'player_info_div.html' %}
+    </div>
+    <br><br>
+    <div id="transfer-value-chart-div">
+        {% include 'transfervaluechart.html' %}
+    </div>
 </div>
-{#<div id="interactive-plots-div">#}
-{#    {% include 'interactiveplots.html' %}#}
-{#</div>#}
-
+<div class="right-grid">
+    <div id="interactive-plots-div">
+        {% include 'interactiveplots.html' %}
+    </div>
+</div>
 </body>
 </html>
