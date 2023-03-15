@@ -6,6 +6,7 @@
 <div class="criterea-buttons-div">
 </div>
 <script>
+    {#generates the buttons with criterea#}
     const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
     const data_to_parse = doc.documentElement.textContent
     const parsed_jsondata = JSON.parse(data_to_parse)
@@ -24,6 +25,8 @@
     }
 </script>
 <script>
+    {#updates the first chart on critereabutton click#}
+
     function critereaSelector(criterea) {
         const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
         const data_to_parse = doc.documentElement.textContent
@@ -31,12 +34,12 @@
         console.log(parsed_jsondata)
         for (let i in parsed_jsondata) {
             console.log(typeof i)
-            skillComparingChart.data.labels[i-1] = parsed_jsondata[i]['general_player_info']?.['Naam']
-            skillComparingChart.data.datasets[0].data[i-1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
+            skillComparingChart.data.labels[i - 1] = parsed_jsondata[i]['general_player_info']?.['Naam']
+            skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
             if (i === "6") {
                 console.log(parsed_jsondata[i]['criterea_specific_player_info'][criterea])
-                skillComparingChart.data.labels[i-1] = 'Average'
-                skillComparingChart.data.datasets[0].data[i-1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
+                skillComparingChart.data.labels[i - 1] = 'Average'
+                skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
             }
         }
         skillComparingChart.options.plugins.title.text = criterea
@@ -44,17 +47,17 @@
     }
 </script>
 
-<canvas id="myChart2"></canvas>
+<canvas id="RadarSkillChart"></canvas>
 
 
 <script>
-    //pinpointing chart (click needs to understand canvas tag)
+    {#the first chart#}
     const skillComparingChartCtx = document.getElementById('skill-comparing-chart');
     //render
     var skillComparingChart = new Chart(skillComparingChartCtx, {
         type: 'bar',
         data: {
-            labels: ['asdf','asdf','asdf','asdf','asdf', 'asdf' ],
+            labels: ['asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf'],
             datasets: [{
                 label: 'Value of Criterium',
                 data: [19, 19, 3, 5, 2, 3],
@@ -82,30 +85,41 @@
     });
 
     function clickHandler(click) {
-        const points = TestChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true)
+        {#handles clicks in the first chart#}
+        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+        const data_to_parse = doc.documentElement.textContent
+        const parsed_jsondata = JSON.parse(data_to_parse)
+        const points = skillComparingChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true)
         if (points.length) {
             const firstPoint = points[0];
-            console.log(TestChart.data.labels[firstPoint.index])
-            console.log(TestChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index])
-            console.log(TestChart2.data.labels[0])
-            TestChart2.data.labels[1] = TestChart.data.labels[firstPoint.index];
-            TestChart2.update()
-
+            const player_name = skillComparingChart.data.labels[firstPoint.index]
+            for (let i in parsed_jsondata) {
+                if (player_name === parsed_jsondata[i]['general_player_info']?.['Naam']) {
+                    console.log(parsed_jsondata[i]['criterea_specific_player_info'])
+                    console.log(Object.keys(parsed_jsondata[i]['criterea_specific_player_info']))
+                    console.log('ASDFASDF')
+                    console.log(Object.values(parsed_jsondata[i]['criterea_specific_player_info']))
+                    RadarSkillChart.data.labels = Object.keys(parsed_jsondata[i]['criterea_specific_player_info']);
+                    RadarSkillChart.data.datasets[0].data = Object.values(parsed_jsondata[i]['criterea_specific_player_info'])
+                    RadarSkillChart.update()
+                }
+            }
 
         }
     }
 
-    ctx.onclick = clickHandler
+    skillComparingChartCtx.onclick = clickHandler
 </script>
 
 
 <script>
+
     //pinpointing chart (click needs to understand canvas tag
-    const ctx2 = document.getElementById('myChart2');
+    const RadarSkillChartctx = document.getElementById('RadarSkillChart');
 
     //render
-    var TestChart2 = new Chart(ctx2, {
-        type: 'bar',
+    var RadarSkillChart = new Chart(RadarSkillChartctx, {
+        type: 'radar',
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
             datasets: [{
@@ -129,4 +143,5 @@
             }
         }
     });
+
 </script>

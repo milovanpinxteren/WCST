@@ -15,6 +15,7 @@ class PlayerInfoScraper:
     def scrape_info(self, player):
         player_info_dict = {}
         player_for_search = player.player_name.replace(' ', '+')
+        #TODO: change to .com ↓
         search_url = "https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query=" + player_for_search
         search_request = Request(search_url, headers={'User-Agent': 'Mozilla/5.0'})
         try:
