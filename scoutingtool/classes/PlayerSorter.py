@@ -30,7 +30,7 @@ class PlayerSorter():
         for sortingfield in self.sorting_fields:
             try: #I wanted to do this with a few if-elif statements, but that shoots into the FieldDoesNotExist error.
                 Shooting._meta.get_field(sortingfield)
-                orderby = "'shooting__" + sortingfield + "'"
+                orderby = "'-shooting__" + sortingfield + "'"
                 sorting_string += orderby + ','
             except FieldDoesNotExist:
                 try:

@@ -1,0 +1,76 @@
+
+.left-grid {
+    float: left;
+    position: absolute;
+    width: 25%;
+    margin-top: 1%;
+}
+
+.right-grid {
+    float: left;
+    width: 70%;
+    height: 80%;
+    margin-top: 1%;
+    margin-left: 28%;
+}
+
+.player-buttons-div {
+    float: left;
+    display: block;
+}
+
+
+.player-button {
+    float: left;
+}
+
+.player-name-div {
+    float: left;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+#player-info-div {
+    background-color: lightgray;
+    /*max-width: 20%;*/
+}
+
+
+#transfervaluechart {
+    height: 280px;
+}
+
+.player-info-key-value-div {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.player-info-key {
+    float: left;
+    margin-right: 3px;
+}
+
+.player-info-value {
+    display: inline-block;
+}
+
+#skill-comparing-chart {
+    max-width: 90%;
+    max-height: 40%;
+}
+
+#interactive-plots-div {
+    width: 70%;
+    float: left;
+}
+
+.plot-1-div {
+    background-color: red;
+    width: 60%;
+}
+
+.plot-2-div {
+    background-color: red;
+    /*max-height: 50%;*/
+    width: 30%;
+}

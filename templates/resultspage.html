@@ -1,16 +1,45 @@
 <!DOCTYPE html>
+{% load static %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'scoutingtool/resultpage_stylesheet.css' %}"/>
     <title>Results</title>
 </head>
 <body>
-{% for player in playerdata %}
-    <a target="_blank"
-       href="https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query={{ player }}"> {{ player }}</a>
-{% endfor %}
 
-{% include 'interactiveplots.html' %}
-
+<div class="player-buttons-div">
+    {% for player in playerdata.items %}
+{#        <div class="player-button">#}
+            <script>
+                if ("{{ player.0 }}" !== '6') { {#  To display buttons of players, no button for average  #}
+                    var inputElement = document.createElement('input');
+                    inputElement.type = "button"
+                    inputElement.value = "{{ player.1.general_player_info.Naam }}"
+                    inputElement.className = "player-button"
+                    inputElement.addEventListener('click', function () {
+                        playerSelector({{ player.0 }});
+                    });
+                    document.body.appendChild(inputElement);
+                }
+            </script>
+{#        </div>#}
+    {% endfor %}
+</div>
+<div class="left-grid">
+    <div id="player-info-div">
+        {% include 'player_info_div.html' %}
+    </div>
+    <br><br>
+    <div id="transfer-value-chart-div">
+        {% include 'transfervaluechart.html' %}
+    </div>
+</div>
+<div class="right-grid">
+    <div id="interactive-plots-div">
+        {% include 'interactiveplots.html' %}
+    </div>
+</div>
 </body>
 </html>

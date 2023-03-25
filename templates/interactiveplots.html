@@ -1,27 +1,69 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% load static %}
 
-<div style="max-width: 50%;">
-    <canvas id="myChart"></canvas>
-</div>
+{#<div class="plot-1-div">#}
+    <canvas id="skill-comparing-chart"></canvas>
+{#</div>#}
+{#<div class="plot-2-div">#}
+    <canvas id="RadarSkillChart"></canvas>
+{#</div>#}
+<div class="criterea-buttons-div">
 
-<div style="max-width: 50%;">
-    <canvas id="myChart2"></canvas>
 </div>
+<script>
+    {#generates the buttons with criterea#}
+    const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+    const data_to_parse = doc.documentElement.textContent
+    const parsed_jsondata = JSON.parse(data_to_parse)
+    const critereaArray = Object.keys(parsed_jsondata[1]['criterea_specific_player_info'])
+    console.log(critereaArray)
+    for (let i in critereaArray) {
+        console.log(critereaArray[i])
+        var critereaInput = document.createElement('input');
+        critereaInput.type = "button"
+        critereaInput.value = critereaArray[i]
+        critereaInput.className = "criterea-button"
+        critereaInput.addEventListener('click', function () {
+            critereaSelector(critereaArray[i]);
+        });
+        document.body.appendChild(critereaInput);
+    }
+</script>
+<script>
+    {#updates the first chart on critereabutton click#}
+
+    function critereaSelector(criterea) {
+        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+        const data_to_parse = doc.documentElement.textContent
+        const parsed_jsondata = JSON.parse(data_to_parse)
+        console.log(parsed_jsondata)
+        for (let i in parsed_jsondata) {
+            console.log(typeof i)
+            skillComparingChart.data.labels[i - 1] = parsed_jsondata[i]['general_player_info']?.['Naam']
+            skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
+            if (i === "6") {
+                console.log(parsed_jsondata[i]['criterea_specific_player_info'][criterea])
+                skillComparingChart.data.labels[i - 1] = 'Average'
+                skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
+            }
+        }
+        skillComparingChart.options.plugins.title.text = criterea
+        skillComparingChart.update()
+    }
+</script>
 
 
 <script>
-    //pinpointing chart (click needs to understand canvas tag)
-    const ctx = document.getElementById('myChart');
+    {#the first chart#}
+    const skillComparingChartCtx = document.getElementById('skill-comparing-chart');
     //render
-    var TestChart = new Chart(ctx, {
+    var skillComparingChart = new Chart(skillComparingChartCtx, {
         type: 'bar',
         data: {
-            {#labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],#}
-            labels: ['{{ playerdata.0 }}', '{{ playerdata.1 }}', '{{ playerdata.2 }}', '{{ playerdata.3 }}', '{{ playerdata.4 }}'],
+            labels: ['asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf'],
             datasets: [{
-                label: '# of Votes',
-                data: [19, 19, 3, 5, 2],
+                label: 'Value of Criterium',
+                data: [19, 19, 3, 5, 2, 3],
                 borderWidth: 1
             }]
         },
@@ -33,6 +75,10 @@
             },
             events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
             plugins: {
+                title: {
+                    display: true,
+                    text: 'Criterium'
+                },
                 tooltip: {
                     // Tooltip will only receive click events
                     events: ['click']
@@ -40,30 +86,43 @@
             }
         }
     });
-    function clickHandler(click){
-        const points = TestChart.getElementsAtEventForMode(click, 'nearest', { intersect: true }, true)
+
+    function clickHandler(click) {
+        {#handles clicks in the first chart#}
+        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+        const data_to_parse = doc.documentElement.textContent
+        const parsed_jsondata = JSON.parse(data_to_parse)
+        const points = skillComparingChart.getElementsAtEventForMode(click, 'nearest', {intersect: true}, true)
         if (points.length) {
             const firstPoint = points[0];
-            console.log(TestChart.data.labels[firstPoint.index])
-            console.log(TestChart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index])
-            console.log(TestChart2.data.labels[0])
-            TestChart2.data.labels[1] = TestChart.data.labels[firstPoint.index];
-            TestChart2.update()
-
+            const player_name = skillComparingChart.data.labels[firstPoint.index]
+            for (let i in parsed_jsondata) {
+                if (player_name === parsed_jsondata[i]['general_player_info']?.['Naam']) {
+                    console.log(parsed_jsondata[i]['criterea_specific_player_info'])
+                    console.log(Object.keys(parsed_jsondata[i]['criterea_specific_player_info']))
+                    console.log('ASDFASDF')
+                    console.log(Object.values(parsed_jsondata[i]['criterea_specific_player_info']))
+                    RadarSkillChart.data.labels = Object.keys(parsed_jsondata[i]['criterea_specific_player_info']);
+                    RadarSkillChart.data.datasets[0].data = Object.values(parsed_jsondata[i]['criterea_specific_player_info'])
+                    RadarSkillChart.update()
+                }
+            }
 
         }
     }
-    ctx.onclick = clickHandler
+
+    skillComparingChartCtx.onclick = clickHandler
 </script>
 
 
 <script>
+
     //pinpointing chart (click needs to understand canvas tag
-    const ctx2 = document.getElementById('myChart2');
+    const RadarSkillChartctx = document.getElementById('RadarSkillChart');
 
     //render
-    var TestChart2 = new Chart(ctx2, {
-        type: 'bar',
+    var RadarSkillChart = new Chart(RadarSkillChartctx, {
+        type: 'radar',
         data: {
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
             datasets: [{
@@ -87,4 +146,5 @@
             }
         }
     });
+
 </script>

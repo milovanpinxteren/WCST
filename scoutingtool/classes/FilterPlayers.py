@@ -14,11 +14,10 @@ class FilterPlayers():
         queryset = GeneralPlayerInfo.objects.all()
 
         for criterium in criterea_list:
+            if criterium['value'] == '0':
+                filtered_queryset = queryset
             if criterium['field'] == 'player_position':
-                if criterium['value'] == '0':
-                    filtered_queryset = queryset
-                else:
-                    filtered_queryset = queryset.filter(position_id=criterium['value'])
+                filtered_queryset = queryset.filter(position_id=criterium['value'])
             elif criterium['field'] == 'player_age_min':
                 filtered_queryset = queryset.filter(player_age__gte=criterium['value'])
             elif criterium['field'] == 'player_age_max':

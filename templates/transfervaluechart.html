@@ -1,0 +1,43 @@
+<div>
+    <canvas id="transfervaluechart"></canvas>
+</div>
+
+<script>
+    function transferdataPreparer(player_id) {
+        const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+        const data_to_parse = doc.documentElement.textContent
+        const parsed_jsondata = JSON.parse(data_to_parse)
+        console.log(Object.keys(parsed_jsondata[player_id]['transfer_value_info']))
+        console.log(Object.values(parsed_jsondata[player_id]['transfer_value_info']))
+        TransfervalueChart.data.labels = Object.keys(parsed_jsondata[player_id]['transfer_value_info']);
+        TransfervalueChart.data.datasets[0].data = Object.values(parsed_jsondata[player_id]['transfer_value_info'])
+        TransfervalueChart.data.datasets.labels = parsed_jsondata[player_id]['general_player_info']['Naam']
+        TransfervalueChart.update()
+    }
+</script>
+<script>
+    const ctx = document.getElementById('transfervaluechart');
+    //render
+    var TransfervalueChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Selecteer speler', 'Selecteer speler', 'Selecteer speler', 'Selecteer speler', 'Selecteer speler'],
+            datasets: [{
+                label: 'Transferwaarde',
+                data: [5, 5, 5, 5, 5],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            maintainAspectRatio: false,
+
+        }
+    });
+
+
+</script>
