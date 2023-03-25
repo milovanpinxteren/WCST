@@ -1,9 +1,14 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% load static %}
 
-
-<canvas id="skill-comparing-chart"></canvas>
+{#<div class="plot-1-div">#}
+    <canvas id="skill-comparing-chart"></canvas>
+{#</div>#}
+{#<div class="plot-2-div">#}
+    <canvas id="RadarSkillChart"></canvas>
+{#</div>#}
 <div class="criterea-buttons-div">
+
 </div>
 <script>
     {#generates the buttons with criterea#}
@@ -46,8 +51,6 @@
         skillComparingChart.update()
     }
 </script>
-
-<canvas id="RadarSkillChart"></canvas>
 
 
 <script>

@@ -58,3 +58,19 @@
     max-width: 90%;
     max-height: 40%;
 }
+
+#interactive-plots-div {
+    width: 70%;
+    float: left;
+}
+
+.plot-1-div {
+    background-color: red;
+    width: 60%;
+}
+
+.plot-2-div {
+    background-color: red;
+    /*max-height: 50%;*/
+    width: 30%;
+}
