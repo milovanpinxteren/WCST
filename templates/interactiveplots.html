@@ -1,28 +1,34 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% load static %}
 
-{#<div class="plot-1-div">#}
-    <canvas id="skill-comparing-chart"></canvas>
-{#</div>#}
-{#<div class="plot-2-div">#}
-    <canvas id="RadarSkillChart"></canvas>
-{#</div>#}
-<div class="criterea-buttons-div">
+
+
+<div class="chartbox">
+    <div class="plot-1-div">
+        <canvas id="skill-comparing-chart"></canvas>
+    </div>
+    <div class="plot-2-div">
+        <canvas id="RadarSkillChart"></canvas>
+    </div>
+
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     {#generates the buttons with criterea#}
     const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
     const data_to_parse = doc.documentElement.textContent
     const parsed_jsondata = JSON.parse(data_to_parse)
     const critereaArray = Object.keys(parsed_jsondata[1]['criterea_specific_player_info'])
-    console.log(critereaArray)
+    {#console.log(critereaArray)#}
     for (let i in critereaArray) {
-        console.log(critereaArray[i])
+        {#console.log(critereaArray[i])#}
+        {#var critereaInputDiv = document.createElement('div');#}
         var critereaInput = document.createElement('input');
         critereaInput.type = "button"
         critereaInput.value = critereaArray[i]
         critereaInput.className = "criterea-button"
+        const styleText = 'position:absolute;top:0;left:' + (26 + 13*i) + '%;width:200px;height:50px;'
+        critereaInput.style.cssText = styleText;
         critereaInput.addEventListener('click', function () {
             critereaSelector(critereaArray[i]);
         });
@@ -68,6 +74,8 @@
             }]
         },
         options: {
+            {#responsive: true,#}
+            {#maintainAspectRatio: false,#}
             scales: {
                 y: {
                     beginAtZero: true
