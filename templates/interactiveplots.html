@@ -1,8 +1,5 @@
 {% load static %}
 
-
-
-<div class="chartbox">
     <div class="plot-1-div">
         <canvas id="skill-comparing-chart"></canvas>
     </div>
@@ -10,8 +7,6 @@
         <canvas id="RadarSkillChart"></canvas>
     </div>
 
-
-</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     {#generates the buttons with criterea#}
@@ -27,7 +22,7 @@
         critereaInput.type = "button"
         critereaInput.value = critereaArray[i]
         critereaInput.className = "criterea-button"
-        const styleText = 'position:absolute;top:0;left:' + (26 + 13*i) + '%;width:200px;height:50px;'
+        const styleText = 'position:absolute;left:80%;top:' + (26 + 13*i) + '%;width:200px;height:50px;'
         critereaInput.style.cssText = styleText;
         critereaInput.addEventListener('click', function () {
             critereaSelector(critereaArray[i]);
