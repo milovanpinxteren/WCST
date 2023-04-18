@@ -1,11 +1,14 @@
 {% load static %}
 
-    <div class="plot-1-div">
-        <canvas id="skill-comparing-chart"></canvas>
-    </div>
-    <div class="plot-2-div">
-        <canvas id="RadarSkillChart"></canvas>
-    </div>
+<div class="plot-1-div">
+    <canvas id="skill-comparing-chart"></canvas>
+</div>
+<div class="plot-2-div">
+    <canvas id="RadarSkillChart" style="width: 5000px"></canvas>
+</div>
+<div class="criterea-selection-div">
+    <p class="player-text">Select criterea:</p>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -22,7 +25,7 @@
         critereaInput.type = "button"
         critereaInput.value = critereaArray[i]
         critereaInput.className = "criterea-button"
-        const styleText = 'position:absolute;left:80%;top:' + (26 + 13*i) + '%;width:200px;height:50px;'
+        const styleText = 'top:' + (40 + (35 * i)) + 'px'
         critereaInput.style.cssText = styleText;
         critereaInput.addEventListener('click', function () {
             critereaSelector(critereaArray[i]);
@@ -130,21 +133,39 @@
             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
             datasets: [{
                 label: 'GRAFIEK 2',
-                data: [5, 3, 17, 14, 2],
+                data: [0, 0, 0, 0, 0],
                 borderWidth: 1
             }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: true
-                }
+                    beginAtZero: true,
+                    {#max: 5,#}
+                    {#stepSize: 1#}
+                },
+                r: {
+                    ticks: {
+                        color: 'red',
+                        beginAtZero: true,
+                        max: 5,
+                        stepSize: 1
+                    },
+                    pointLabels: {
+                        fontSize: 100,
+                        rotation: 50,
+                        color: 'blue'
+                    }
+                },
             },
             events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
             plugins: {
                 tooltip: {
                     // Tooltip will only receive click events
                     events: ['click']
+                },
+                legend: {
+                    display: false,
                 }
             }
         }

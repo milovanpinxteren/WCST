@@ -1,11 +1,12 @@
 body {
     background-color: #ddeff1;
+    overflow: hidden;
 }
 
 .grid-container {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 12% 12% 12% 12% 12% 12% 12% 12% ;
+    grid-template-rows: 12% 12% 12% 12% 12% 12% 12% 12%;
     grid-gap: 10px;
     width: 98vw;
     height: 97vh;
@@ -18,10 +19,57 @@ body {
     grid-row: 1 / 3;
 }
 
+.player-text {
+    margin-top: -2px;
+    font-weight: 500;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
 .player-names-div {
-    background-color: green;
-    grid-column: 1;
-    grid-row: 1 / 3;
+    /*grid-column: 1;*/
+    /*grid-row: 1 / 3;*/
+    align-items: center;
+    background-color: #fff;
+    /*border: 2px solid #000;*/
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    /*padding-bottom: 20px;*/
+    min-width: 140px;
+    outline: 0;
+    /*padding: 0 17px;*/
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.player-names-div:focus {
+    color: #171e29;
+}
+
+.player-names-div:hover {
+    border-color: #06f;
+    color: #06f;
+    fill: #06f;
+}
+
+.player-names-div:active {
+    border-color: #06f;
+    color: #06f;
+    fill: #06f;
 }
 
 .player-button {
@@ -73,16 +121,45 @@ body {
 
 
 .criterea-button {
-    float: top;
     position: absolute;
-    top: 0;
-    left: 25%;
+    left: 76%;
+    align-items: center;
+    background-color: #fff;
+    /*border: 2px solid #000;*/
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    /*padding-bottom: 20px;*/
+    min-width: 140px;
+    outline: 0;
+    /*padding: 0 17px;*/
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
 
 .plot-1-div {
     background-color: white;
     grid-column: 2 / 4;
+    grid-row: 1 / 4;
+}
+
+.criterea-selection-div {
+    background-color: white;
+    grid-column: 4;
     grid-row: 1 / 4;
 }
 
