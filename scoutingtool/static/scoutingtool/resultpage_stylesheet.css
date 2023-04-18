@@ -1,27 +1,80 @@
-
-.left-grid {
-    float: left;
-    position: absolute;
-    width: 25%;
-    margin-top: 1%;
+body {
+    background-color: #ddeff1;
+    overflow: hidden;
 }
 
-.right-grid {
-    float: left;
-    width: 70%;
-    height: 80%;
-    margin-top: 1%;
-    margin-left: 28%;
+.grid-container {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 12% 12% 12% 12% 12% 12% 12% 12%;
+    grid-gap: 10px;
+    width: 98vw;
+    height: 97vh;
 }
+
 
 .player-buttons-div {
-    float: left;
-    display: block;
+    background-color: white;
+    grid-column: 1;
+    grid-row: 1 / 3;
 }
 
+.player-text {
+    margin-top: -2px;
+    font-weight: 500;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+}
+
+.player-names-div {
+    /*grid-column: 1;*/
+    /*grid-row: 1 / 3;*/
+    align-items: center;
+    background-color: #fff;
+    /*border: 2px solid #000;*/
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    /*padding-bottom: 20px;*/
+    min-width: 140px;
+    outline: 0;
+    /*padding: 0 17px;*/
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.player-names-div:focus {
+    color: #171e29;
+}
+
+.player-names-div:hover {
+    border-color: #06f;
+    color: #06f;
+    fill: #06f;
+}
+
+.player-names-div:active {
+    border-color: #06f;
+    color: #06f;
+    fill: #06f;
+}
 
 .player-button {
     float: left;
+    position: fixed;
 }
 
 .player-name-div {
@@ -30,19 +83,26 @@
     margin-right: 15px;
 }
 
-#player-info-div {
-    background-color: lightgray;
-    /*max-width: 20%;*/
+.player-info-div {
+    background-color: white;
+    grid-column: 1;
+    grid-row: 3 / 5;
+    max-width: 100%;
 }
 
-
-#transfervaluechart {
-    height: 280px;
+.transfer-value-chart-div {
+    background-color: white;
+    grid-column: 1;
+    grid-row: 5 / 8;
+    /*height: 40%;*/
+    max-width: 100%;
 }
+
 
 .player-info-key-value-div {
     display: block;
     margin-bottom: 4px;
+    margin-left: 15px;
 }
 
 .player-info-key {
@@ -56,21 +116,55 @@
 
 #skill-comparing-chart {
     max-width: 90%;
-    max-height: 40%;
+    max-height: 100%;
 }
 
-#interactive-plots-div {
-    width: 70%;
-    float: left;
+
+.criterea-button {
+    position: absolute;
+    left: 76%;
+    align-items: center;
+    background-color: #fff;
+    /*border: 2px solid #000;*/
+    box-sizing: border-box;
+    color: #000;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    height: 30px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    /*padding-bottom: 20px;*/
+    min-width: 140px;
+    outline: 0;
+    /*padding: 0 17px;*/
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
+
 
 .plot-1-div {
-    background-color: red;
-    width: 60%;
+    background-color: white;
+    grid-column: 2 / 4;
+    grid-row: 1 / 4;
+}
+
+.criterea-selection-div {
+    background-color: white;
+    grid-column: 4;
+    grid-row: 1 / 4;
 }
 
 .plot-2-div {
-    background-color: red;
-    /*max-height: 50%;*/
-    width: 30%;
+    background-color: white;
+    grid-column: 2 / 3;
+    grid-row: 4 / 8;
 }

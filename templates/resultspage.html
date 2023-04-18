@@ -8,38 +8,42 @@
     <title>Results</title>
 </head>
 <body>
-
-<div class="player-buttons-div">
-    {% for player in playerdata.items %}
-{#        <div class="player-button">#}
-            <script>
-                if ("{{ player.0 }}" !== '6') { {#  To display buttons of players, no button for average  #}
-                    var inputElement = document.createElement('input');
-                    inputElement.type = "button"
-                    inputElement.value = "{{ player.1.general_player_info.Naam }}"
-                    inputElement.className = "player-button"
-                    inputElement.addEventListener('click', function () {
-                        playerSelector({{ player.0 }});
-                    });
-                    document.body.appendChild(inputElement);
-                }
-            </script>
-{#        </div>#}
-    {% endfor %}
-</div>
-<div class="left-grid">
-    <div id="player-info-div">
+<div class="grid-container">
+    <div class="player-buttons-div">
+        <p class="player-text"> 5 best players based on selected criterea:</p>
+        {% for player in playerdata.items %}
+            <div class="player-button">
+                <script>
+                    {#To display buttons of players, no button for average#}
+                    if ("{{ player.0 }}" !== '6') {
+                        var inputElement = document.createElement('input');
+                        inputElement.type = "button"
+                        inputElement.value = "{{ player.1.general_player_info.Naam }}"
+                        inputElement.className = "player-names-div player-button"
+                        if ("{{ player.0 }}" === '1' || "{{ player.0 }}" === '2' || "{{ player.0 }}" === '3') {
+                            const cssTextinput = 'top:' + (1 + ({{ player.0 }} * 3)) + '0px;left:6px;'
+                            inputElement.style.cssText = cssTextinput
+                        }
+                        if ("{{ player.0 }}" === '4' || "{{ player.0 }}" === '5' || "{{ player.0 }}" === '6') {
+                            const cssTextinput = 'top:' + (1 + ({{ player.0 }} * 3)) + '0px;left:6px;'
+                            inputElement.style.cssText = cssTextinput
+                        }
+                        inputElement.addEventListener('click', function () {
+                            playerSelector({{ player.0 }});
+                        });
+                        document.body.appendChild(inputElement);
+                    }
+                </script>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="player-info-div">
         {% include 'player_info_div.html' %}
     </div>
-    <br><br>
-    <div id="transfer-value-chart-div">
+    <div class="transfer-value-chart-div">
         {% include 'transfervaluechart.html' %}
     </div>
-</div>
-<div class="right-grid">
-    <div id="interactive-plots-div">
-        {% include 'interactiveplots.html' %}
-    </div>
+    {% include 'interactiveplots.html' %}
 </div>
 </body>
 </html>
