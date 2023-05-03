@@ -11,7 +11,7 @@ class VisualizationMaker():
         for player in selected_players:
             player_data_dict = {}
             player_data_dict['id'] = str(player_counter)
-            #TODO uncomment this ↓
+
 
             try: #get data from transfermarkt.com
                 general_player_info = infogetter.get_transfermarkt_data(player)[0]
@@ -22,7 +22,7 @@ class VisualizationMaker():
             criterea_specific_player_info = infogetter.get_database_data(player, criterea_list) #get info from own database
 
             #fill the dict
-            # TODO uncomment this ↓
+
             player_data_dict['general_player_info'] = general_player_info
             player_data_dict['transfer_value_info'] = transfer_value_info
             player_data_dict['criterea_specific_player_info'] = criterea_specific_player_info

@@ -14,9 +14,9 @@ class PlayerInfoScraper:
 
     def scrape_info(self, player):
         player_info_dict = {}
-        player_for_search = player.player_name.replace(' ', '+')
-        #TODO: change to .com ↓
-        search_url = "https://www.transfermarkt.nl/schnellsuche/ergebnis/schnellsuche?query=" + player_for_search
+        player_for_search = player.player_name.replace(' ', '+').replace('ü', 'u').replace('ä', 'a').replace('é', 'e')
+        #TODO remove leestekens in naam
+        search_url = "https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query=" + player_for_search
         search_request = Request(search_url, headers={'User-Agent': 'Mozilla/5.0'})
         try:
             search_return = urlopen(search_request)
@@ -31,7 +31,7 @@ class PlayerInfoScraper:
             player_url = "https://www.transfermarkt.nl" + resultset[1].find('a', href=True)['href']
         except IndexError: #no player found on https://www.transfermarkt.nl
             player_info_dict['Naam'] = player.player_name
-            player_info_dict['Geboortedatum'] = "Geen info bekend"
+            player_info_dict['Geboortedatum'] = "No information found"
             return player_info_dict
         player_page = Request(player_url, headers={'User-Agent': 'Mozilla/5.0'})
         player_page_return = urlopen(player_page)
@@ -46,8 +46,10 @@ class PlayerInfoScraper:
         playerinfodictmaker = PlayerInfoDictMaker()
         for tag in player_info_resultset:
             player_info_dict['Naam'] = player.player_name
+
             playerinfodictmaker.make_dict(tag, resultset_counter, player_info_resultset, player_info_dict)
             resultset_counter += 1
+        player_info_dict['foto_url'] = player_resultsoup.find(id="fotoauswahlOeffnen").find('img').attrs['src']
         return player_info_dict, transfer_value_dict
 
     def get_transfer_data(self, player_url):
