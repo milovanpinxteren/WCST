@@ -18,6 +18,7 @@ class VisualizationMaker():
                 transfer_value_info = infogetter.get_transfermarkt_data(player)[1]
             except KeyError: #no information found
                 general_player_info = infogetter.get_transfermarkt_data(player)
+                transfer_value_info = "No transfervalues available"
 
             criterea_specific_player_info = infogetter.get_database_data(player, criterea_list) #get info from own database
 

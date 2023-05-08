@@ -46,6 +46,9 @@
             skillComparingChart.data.labels[i - 1] = parsed_jsondata[i]['general_player_info']?.['Naam']
             skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
             if (i === "6") {
+                console.log("Average")
+                console.log(parsed_jsondata[i])
+                console.log(parsed_jsondata[i]['criterea_specific_player_info'])
                 console.log(parsed_jsondata[i]['criterea_specific_player_info'][criterea])
                 skillComparingChart.data.labels[i - 1] = 'Average'
                 skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
