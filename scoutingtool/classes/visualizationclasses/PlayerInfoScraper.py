@@ -15,7 +15,7 @@ class PlayerInfoScraper:
     def scrape_info(self, player):
         player_info_dict = {}
         replacement_dict = {' ': '+', 'ü': 'u', 'ä': 'a', 'é': 'e', 'á': 'a', 'ć': 'c', 'č': 'c', 'ñ': 'n', 'đ': 'd',
-                            'í': 'i', 'ł': 'l', 'ó': 'o', 'ś': 's'} #otherwise the search will come back empty
+                            'í': 'i', 'ł': 'l', 'ó': 'o', 'ś': 's', 'Ž': 'z'} #otherwise the search will come back empty
         player_for_search = player.player_name
         for key in replacement_dict.keys():
             player_for_search = player_for_search.replace(key, replacement_dict[key])

@@ -54,6 +54,7 @@
     </div>
 </div>
 <script>
+    {#Fills the graphs with the best player#}
     const data = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
     const init_data = data.documentElement.textContent
     const init_parsed_data = JSON.parse(init_data)
@@ -91,8 +92,7 @@
     RadarSkillChart.data.labels = Object.keys(init_parsed_data[1]['criterea_specific_player_info']);
     RadarSkillChart.data.datasets[0].data = Object.values(init_parsed_data[1]['criterea_specific_player_info'])
     RadarSkillChart.update()
-
-
 </script>
+
 </body>
 </html>

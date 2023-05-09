@@ -19,7 +19,7 @@ def submit_criterea(request): #when user submits the form
         if criterea_selection_form.is_valid():
 
             playerselector = PlayerSelector(criterea_selection_form)
-            selected_players, criterea_list = playerselector.sort_players()
+            selected_players, criterea_list = playerselector.sort_players() #gets the players who best fit the criterea
             visualizationmaker = VisualizationMaker()
             playerdata = visualizationmaker.make_visualizations(selected_players, criterea_list)
             jsondata = str(playerdata).replace("'", '"')

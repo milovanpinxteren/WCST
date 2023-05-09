@@ -17,10 +17,7 @@
     const data_to_parse = doc.documentElement.textContent
     const parsed_jsondata = JSON.parse(data_to_parse)
     const critereaArray = Object.keys(parsed_jsondata[1]['criterea_specific_player_info'])
-    {#console.log(critereaArray)#}
     for (let i in critereaArray) {
-        {#console.log(critereaArray[i])#}
-        {#var critereaInputDiv = document.createElement('div');#}
         var critereaInput = document.createElement('input');
         critereaInput.type = "button"
         critereaInput.value = critereaArray[i]
@@ -35,7 +32,6 @@
 </script>
 <script>
     {#updates the first chart on critereabutton click#}
-
     function critereaSelector(criterea) {
         const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
         const data_to_parse = doc.documentElement.textContent
@@ -75,8 +71,6 @@
             }]
         },
         options: {
-            {#responsive: true,#}
-            {#maintainAspectRatio: false,#}
             scales: {
                 y: {
                     beginAtZero: true
@@ -120,16 +114,13 @@
 
         }
     }
-
     skillComparingChartCtx.onclick = clickHandler
 </script>
 
 
 <script>
-
     //pinpointing chart (click needs to understand canvas tag
     const RadarSkillChartctx = document.getElementById('RadarSkillChart');
-
     //render
     var RadarSkillChart = new Chart(RadarSkillChartctx, {
         type: 'radar',
@@ -145,14 +136,11 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    {#max: 5,#}
-                    {#stepSize: 1#}
                 },
                 r: {
                     ticks: {
                         color: 'blue',
                         beginAtZero: true,
-                        max: 5,
                         stepSize: 1
                     },
                     pointLabels: {
@@ -160,7 +148,7 @@
                         rotation: 50,
                         color: 'blue'
                     }
-                },
+                }
             },
             events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
             plugins: {

@@ -14,7 +14,6 @@ class InfoGetter():
         return player_info
 
     def get_database_data(self, player, criterea_list):
-        print('GET DATABASE INFO')
         #criterea_list is sorted, remove age and position and keep the 5 most important criterea
         databasequerier = DatabaseQuerier()
         important_criterea = criterea_list[3:8]
