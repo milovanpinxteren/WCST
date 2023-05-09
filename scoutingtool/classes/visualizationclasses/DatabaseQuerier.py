@@ -8,10 +8,13 @@ class DatabaseQuerier:
         for criterium in important_criterea:
             criterium_name = criterium['field']
             target_model = [k for k, v in model_fields_dict.items() if criterium_name in v] #str of the model where the data needs to come from
-
             query = target_model[0] + '.objects.get(player=player).' + criterium_name
             value = eval(query)
             criterea_values_dict[criterium_name] = value
+            pretty_dict = criterea_values_dict.copy()
+            for k in pretty_dict.keys():
+                new_string = k.replace("_", " ").capitalize()
+                criterea_values_dict[new_string] = criterea_values_dict.pop(k)
         return criterea_values_dict
 
 
@@ -35,5 +38,6 @@ class DatabaseQuerier:
                             criterium_name in v]  # str of the model where the data needs to come from
             query = target_model[0] + ".objects.aggregate(Avg('" + criterium_name + "'))['" + criterium_name + "__avg']"
             value = eval(query)
-            criterea_values_dict[criterium_name] = value
+            pretty_criterium_name = criterium_name.replace("_", " ").capitalize()
+            criterea_values_dict[pretty_criterium_name] = value
         return criterea_values_dict

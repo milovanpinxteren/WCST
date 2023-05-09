@@ -17,10 +17,7 @@
     const data_to_parse = doc.documentElement.textContent
     const parsed_jsondata = JSON.parse(data_to_parse)
     const critereaArray = Object.keys(parsed_jsondata[1]['criterea_specific_player_info'])
-    {#console.log(critereaArray)#}
     for (let i in critereaArray) {
-        {#console.log(critereaArray[i])#}
-        {#var critereaInputDiv = document.createElement('div');#}
         var critereaInput = document.createElement('input');
         critereaInput.type = "button"
         critereaInput.value = critereaArray[i]
@@ -35,7 +32,6 @@
 </script>
 <script>
     {#updates the first chart on critereabutton click#}
-
     function critereaSelector(criterea) {
         const doc = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
         const data_to_parse = doc.documentElement.textContent
@@ -46,6 +42,9 @@
             skillComparingChart.data.labels[i - 1] = parsed_jsondata[i]['general_player_info']?.['Naam']
             skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
             if (i === "6") {
+                console.log("Average")
+                console.log(parsed_jsondata[i])
+                console.log(parsed_jsondata[i]['criterea_specific_player_info'])
                 console.log(parsed_jsondata[i]['criterea_specific_player_info'][criterea])
                 skillComparingChart.data.labels[i - 1] = 'Average'
                 skillComparingChart.data.datasets[0].data[i - 1] = parsed_jsondata[i]['criterea_specific_player_info'][criterea]
@@ -64,16 +63,14 @@
     var skillComparingChart = new Chart(skillComparingChartCtx, {
         type: 'bar',
         data: {
-            labels: ['asdf', 'asdf', 'asdf', 'asdf', 'asdf', 'asdf'],
+            labels: ['Select Criterium'],
             datasets: [{
                 label: 'Value of Criterium',
-                data: [19, 19, 3, 5, 2, 3],
+                data: [0],
                 borderWidth: 1
             }]
         },
         options: {
-            {#responsive: true,#}
-            {#maintainAspectRatio: false,#}
             scales: {
                 y: {
                     beginAtZero: true
@@ -108,6 +105,7 @@
                     console.log(Object.keys(parsed_jsondata[i]['criterea_specific_player_info']))
                     console.log('ASDFASDF')
                     console.log(Object.values(parsed_jsondata[i]['criterea_specific_player_info']))
+                    document.getElementById("player-img").src = parsed_jsondata[i]['general_player_info']['foto_url'];
                     RadarSkillChart.data.labels = Object.keys(parsed_jsondata[i]['criterea_specific_player_info']);
                     RadarSkillChart.data.datasets[0].data = Object.values(parsed_jsondata[i]['criterea_specific_player_info'])
                     RadarSkillChart.update()
@@ -116,21 +114,18 @@
 
         }
     }
-
     skillComparingChartCtx.onclick = clickHandler
 </script>
 
 
 <script>
-
     //pinpointing chart (click needs to understand canvas tag
     const RadarSkillChartctx = document.getElementById('RadarSkillChart');
-
     //render
     var RadarSkillChart = new Chart(RadarSkillChartctx, {
         type: 'radar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+            labels: ['Select Player'],
             datasets: [{
                 label: 'GRAFIEK 2',
                 data: [0, 0, 0, 0, 0],
@@ -141,14 +136,11 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    {#max: 5,#}
-                    {#stepSize: 1#}
                 },
                 r: {
                     ticks: {
-                        color: 'red',
+                        color: 'blue',
                         beginAtZero: true,
-                        max: 5,
                         stepSize: 1
                     },
                     pointLabels: {
@@ -156,7 +148,7 @@
                         rotation: 50,
                         color: 'blue'
                     }
-                },
+                }
             },
             events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
             plugins: {

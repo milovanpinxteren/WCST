@@ -21,11 +21,15 @@
                         inputElement.value = "{{ player.1.general_player_info.Naam }}"
                         inputElement.className = "player-names-div player-button"
                         if ("{{ player.0 }}" === '1' || "{{ player.0 }}" === '2' || "{{ player.0 }}" === '3') {
-                            const cssTextinput = 'top:' + (1 + ({{ player.0 }} * 3)) + '0px;left:6px;'
+                            const cssTextinput = 'top:' + (1 + ({{ player.0 }} * 3)
+                        )
+                            +'0px;left:6px;'
                             inputElement.style.cssText = cssTextinput
                         }
                         if ("{{ player.0 }}" === '4' || "{{ player.0 }}" === '5' || "{{ player.0 }}" === '6') {
-                            const cssTextinput = 'top:' + (1 + ({{ player.0 }} * 3)) + '0px;left:6px;'
+                            const cssTextinput = 'top:' + (1 + ({{ player.0 }} * 3)
+                        )
+                            +'0px;left:6px;'
                             inputElement.style.cssText = cssTextinput
                         }
                         inputElement.addEventListener('click', function () {
@@ -44,6 +48,51 @@
         {% include 'transfervaluechart.html' %}
     </div>
     {% include 'interactiveplots.html' %}
+
+    <div>
+        <img id="player-img" src="-" width="290px" height="380px">
+    </div>
 </div>
+<script>
+    {#Fills the graphs with the best player#}
+    const data = new DOMParser().parseFromString("{{ jsondata }}", "text/html");
+    const init_data = data.documentElement.textContent
+    const init_parsed_data = JSON.parse(init_data)
+    console.log(init_parsed_data)
+    document.getElementById("p1").innerHTML = init_parsed_data[1]['general_player_info']['Naam'];
+    document.getElementById("p2").innerHTML = init_parsed_data[1]['general_player_info']['Geboortedatum'];
+    document.getElementById("p3").innerHTML = init_parsed_data[1]['general_player_info']['Geboorteplaats'];
+    document.getElementById("p4").innerHTML = init_parsed_data[1]['general_player_info']['Leeftijd'];
+    document.getElementById("p5").innerHTML = init_parsed_data[1]['general_player_info']['Lengte'];
+    document.getElementById("p6").innerHTML = init_parsed_data[1]['general_player_info']['Nationaliteit'];
+    document.getElementById("p7").innerHTML = init_parsed_data[1]['general_player_info']['Positie'];
+    document.getElementById("p8").innerHTML = init_parsed_data[1]['general_player_info']['Voet'];
+    document.getElementById("player-img").src = init_parsed_data[1]['general_player_info']['foto_url'];
+    console.log(init_parsed_data[1]['general_player_info']['foto_url'])
+
+    TransfervalueChart.data.labels = Object.keys(init_parsed_data[1]['transfer_value_info']);
+    TransfervalueChart.data.datasets[0].data = Object.values(init_parsed_data[1]['transfer_value_info'])
+    TransfervalueChart.data.datasets.labels = init_parsed_data[1]['general_player_info']['Naam']
+    TransfervalueChart.update()
+
+    for (let i in init_parsed_data) {
+        console.log(typeof i)
+        console.log(init_parsed_data[i]['criterea_specific_player_info'])
+        console.log(Object.values(init_parsed_data[i]['criterea_specific_player_info'])[0])
+        skillComparingChart.data.labels[i - 1] = init_parsed_data[i]['general_player_info']?.['Naam']
+        skillComparingChart.data.datasets[0].data[i - 1] = Object.values(init_parsed_data[i]['criterea_specific_player_info'])[0]
+        if (i === "6") {
+            skillComparingChart.data.labels[i - 1] = 'Average'
+            skillComparingChart.data.datasets[0].data[i - 1] = Object.values(init_parsed_data[i]['criterea_specific_player_info'])[0]
+        }
+    }
+    skillComparingChart.options.plugins.title.text = Object.keys(init_parsed_data[1]['criterea_specific_player_info'])[0]
+    skillComparingChart.update()
+
+    RadarSkillChart.data.labels = Object.keys(init_parsed_data[1]['criterea_specific_player_info']);
+    RadarSkillChart.data.datasets[0].data = Object.values(init_parsed_data[1]['criterea_specific_player_info'])
+    RadarSkillChart.update()
+</script>
+
 </body>
 </html>
