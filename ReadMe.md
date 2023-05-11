@@ -82,7 +82,7 @@
       - aerials won percentage
 
 
-##Logic and how it works
+## Logic and how it works
 - Criterea are passed to views.py
 - views.py checks if form is valid and initiates the Selection and filtering procedure
 - In Selection, the attributes are sorted on importance. 
