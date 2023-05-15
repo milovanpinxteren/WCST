@@ -2,7 +2,7 @@
 
 ## Setting up
 - Clone this repository
-- Open it in your IDE (Pycharm is used for this ReadMe)
+- Open it in your IDE (Pycharm is used by developers)
 - Connect a Postgres database (https://blog.nextideatech.com/how-to-create-a-django-app-and-connect-it-to-a-database/)
 - Fill the database with the .csv files provided by the project developers
 - Configure the main process and run it.
@@ -13,11 +13,11 @@
 
 ## Database structure:
 - GeneralPlayerInfo (stats + misc)
-- Shooting
-- Passing (passing + passing_types)
-- Defense
-- Possession
-- DuelsandOffside
+- Shooting (Foreign key from GeneralPlayerInfo)
+- Passing (passing + passing_types) (Foreign key from GeneralPlayerInfo)
+- Defense (Foreign key from GeneralPlayerInfo)
+- Possession (Foreign key from GeneralPlayerInfo)
+- DuelsandOffside (Foreign key from GeneralPlayerInfo)
 
 ## Flow and use case
 - User logs in and redirects to critereaselection page
@@ -53,9 +53,6 @@
     - assists per 90 mins (assists and minutes_90s)
     - assisted shots per 90 mins (assisted_shots and minutes_90s)
     - crosses per 90 mins (from misc table)
-    - passes into penalty area per 90 mins (optional)
-    - crosses into penalty area per 90 mins (optional)
-    - progressive passes per 90 mins (optional)
   - Chance/Goal creation (moved to possession)
   - Defense
       - tackles per 90 mins
